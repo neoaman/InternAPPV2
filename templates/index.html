@@ -7,47 +7,126 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Assignment</title>
     <style>
+        body {
+            font-size: 20px;
+        }
+
         .container {
             /* position: fixed; */
             display: block;
-            width: 60%;
-            border-radius: 20px;
-            padding: 20px;
+            width: 65%; 
+            border-radius: 80px;
+            padding: 10px;
             margin: auto;
-            border: 2px solid red;
+            border: 2px solid lightblue;
         }
+
+        .success {
+            /* position: fixed; */
+            display: block;
+            width: 300px;
+            border-radius: 40px;
+            padding: 20px;
+            margin: 30px auto;
+            border: 2px solid lightblue;
+        }
+
+        .success h3 {
+            text-align: center;
+            text-decoration: solid;
+            color: rgb(130, 200, 223);
+
+        }
+
+        .success span {
+            display: block;
+            text-align: center;
+
+        }
+
+        .failure {
+            /* position: fixed; */
+            display: block;
+            text-decoration: solid;
+            width: 300px;
+            border-radius: 40px;
+            padding: 20px;
+            margin: 30px auto;
+            border: 2px solid lightblue;
+
+        }
+
+        .failure h3 {
+            text-align: center;
+            color: red;
+
+        }
+
+        .failure span {
+            display: block;
+            text-align: center;
+
+        }
+
+
 
         .rating3 {
             display: flex;
-            width: max-content;
             margin: auto;
             flex-flow: row wrap;
             /* align-items: center; */
-            align-items: stretch;
-            justify-content: space-around;
+            align-items: center;
+            /* justify-content: space-around; */
+            justify-content: space-between;
+            /* justify-content: space-evenly; */
+
 
         }
 
-        .chb {
+        .info {
+            display: flex;
+            margin: auto;
+            flex-flow: row wrap;
+            /* align-items: center; */
+            align-items: center;
+            /* justify-content: space-around; */
+            justify-content: space-between;
+        }
+
+        .chb{
             border: 2px solid lightblue;
             border-radius: 6px;
             margin: 2px;
+            font-size: 15px;
             padding: 6px 10px;
-            background-color: lightblue;
+            background-color: lightcyan;
             display: inline;
+            
 
         }
+
 
         .rating3 input {
             border-radius: 6px;
             border: 2px solid lightblue;
             /* margin: 2px; */
             padding: 6px;
-            width: max-content;
+            width: 200px;
+            font-size: 15px;
 
         }
 
-        span {
+        .info input {
+            border-radius: 6px;
+            border: 2px solid lightblue;
+            /* margin: 2px; */
+            padding: 6px;
+            width: 120px;
+            font-size: 15px;
+
+        }
+
+        .container span {
             display: inline;
             border: 2px solid lightblue;
             background-color: lightblue;
@@ -59,12 +138,13 @@
 
         .adskills {
             display: flex;
-            width: max-content;
             margin: auto;
             flex-flow: row wrap;
             /* align-items: center; */
-            align-items: stretch;
+            align-items: center;
+            /* justify-content: space-around; */
             justify-content: space-between;
+            /* justify-content: space-evenly; */
 
         }
 
@@ -81,50 +161,82 @@
         .btns button {
             border-radius: 6px;
             padding: 6px 18px;
-            background-color: gray;
+            background-color: rgb(168, 168, 168);
+            font-size: 20px;
         }
 
         .btns button:hover {
             border-radius: 6px;
-            padding: 6px;
-            background-color: royalblue;
+            padding: 6px 18px;
+            background-color: lightblue;
+            font-size: 20px;
         }
 
-        h4{
+        h4 {
             margin-top: 40px;
         }
 
+        .btn0 {
+            display: inline;
+            background-color: lightblue;
+            width: 50px;
+            border-radius: 6px;
+            font-size: 17px;
+            padding: 9px;
+            margin: 10px auto;
+        }
 
+        .lable0{
+            display: inline;
+            background-color: lightblue;
+            /* width: 50px; */
+            border-radius: 6px;
+            font-size: 17px;
+            padding: 9px;
+            margin: 6px auto;
+        }
+
+
+
+        a {
+            text-transform: none;
+            text-decoration: none;
+        }
     </style>
 
 </head>
 
 <body>
     <div class="container">
-
-
-        <form action="">
-            <h3 style="text-align: center;">Data Scientist Application v2.0</h3>
-
-            <h4 ><span>Basic Information</span></h4>
-            <div class="rating3">
-                <input type="text" placeholder="Enter Name">
-                <input type="text" placeholder="Mobile Number">
-                <input type="text" placeholder="UG">
-                <input type="text" placeholder="UG Year">
-                <input type="text" placeholder="PG">
-                <input type="text" placeholder="PG Year">
+        <form action="/" method="POST">
+            <h2 style="text-align: center;">Data Scientist Application v2.0</h2>
+            <label class="lable0">Basic Information</label>
+            <br>
+            <br>
+            <div class="info">
+                <input name="inp1" type="text" placeholder="Enter Name">
+                <input name="inp2" type="text" placeholder="Mobile Number">
+                <input name="inp3" type="text" placeholder="UG">
+                <input name="inp4" type="number" placeholder="UG Year">
+                <input name="inp5" type="text" placeholder="PG">
+                <input name="inp6" type="number" placeholder="PG Year">
+            </div>
+            <br>
+            <label class="lable0" for="aman">Primary Skills Self Rating</label>
+            <br>
+            <br>
+            <!-- <h4> <span>Primary Skills Self Rating</span></h4> -->
+            <div class="rating3" id='aman'>
+                <input name="rat1" type="number" placeholder="Python (1-3) ">
+                <input name="rat2" type="number" placeholder="R Programming (1-3)">
+                <input name="rat3" type="number" placeholder="Data Science(ML/DL) (1-3)">
             </div>
 
-            <h4> <span>Primary Skills Self Rating</span></h4>
-            <div class="rating3">
-                <input type="text" placeholder="Python (1-3) ">
-                <input type="text" placeholder="R Programming (1-3)">
-                <input type="text" placeholder="Data Science(ML/DL)(1-3)">
-            </div>
-
-
-            <h4><span>Additional Skills</span></h4>
+            <br>
+            <label class="lable0">Additional Skills</label>
+            <br>
+            <br>
+            <!-- <h4><span>Additional Skills</span></h4> -->
             <div class="adskills">
 
                 <div class="chb">
@@ -148,12 +260,8 @@
                     <input id="cb5" type="checkbox" name="chb5">
                 </div>
                 <div class="chb">
-                    <label for="cb6">SQL</label>
+                    <label for="cb6">SQL/NoSQL</label>
                     <input id="cb6" type="checkbox" name="chb6">
-                </div>
-                <div class="chb">
-                    <label for="cb7">NoSQL</label>
-                    <input id="cb7" type="checkbox" name="chb7">
                 </div>
                 <div class="chb">
                     <label for="cb8">Excel</label>
@@ -167,6 +275,8 @@
         </form>
 
     </div>
+    {{output}}
+
 </body>
 
 </html>
