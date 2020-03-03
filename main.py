@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request,Markup
 import process as p
 import model as m
+from flask_restful import Resource, Api
 app = Flask(__name__)
 
+api = Api(app)
 @app.route("/" ,methods = ["GET","POST"])
 def home():
     if (request.method == "POST"):
@@ -68,6 +70,45 @@ def home():
         
 
     return render_template('index.html',output = " ")
+
+@app.route("/manual/<strt>", methods = ["GET","POST"])
+def manual(strt):
+    testdata = strt.split('-')
+    i_ugy = int(testdata[0])    
+    r_py = int(testdata[1])
+    r_r = int(testdata[2])
+    r_ds = int(testdata[3])
+    o_skill = int(testdata[4])
+        
+    testdata2 = ['Unknown',r_py,r_r,r_ds,i_ugy,o_skill]
+    result,proba = m.final_model(testdata2)
+    if result == "Yes":
+        output = {"Candidate_Info":{"Python_rating":r_py,"R_rating":r_r,"Data_Science_Rating":r_ds,"Passout_Year":i_ugy,"Other_Skill_Scores":o_skill},"Selected":"Yes"}
+    if result == "No":
+        output = {"Candidate_Info":{"Python_rating":r_py,"R_rating":r_r,"Data_Science_Rating":r_ds,"Passout_Year":i_ugy,"Other_Skill_Scores":o_skill},"Selected":"No"}     
+
+    return output
+
+class Info(Resource):
+    def get(self,i_ugy,rt,o_skill):
+        i_ugy = int(i_ugy)
+        rt = rt.split("-")    
+        r_py = int(rt[0])
+        r_r = int(rt[1])
+        r_ds = int(rt[2])
+        o_skill = int(o_skill)
+        testdata2 = ['Unknown',r_py,r_r,r_ds,i_ugy,o_skill]
+        result,proba = m.final_model(testdata2)
+        if result == "Yes":
+            output = {"Candidate_Info":{"Python_rating":r_py,"R_rating":r_r,"Data_Science_Rating":r_ds,"Passout_Year":i_ugy,"Other_Skill_Scores":o_skill},"Selected":"Yes","Probability_Selection":1-proba[0]}
+        if result == "No":
+            output = {"Candidate_Info":{"Python_rating":r_py,"R_rating":r_r,"Data_Science_Rating":r_ds,"Passout_Year":i_ugy,"Other_Skill_Scores":o_skill},"Selected":"No","Probability_Rejection":proba[0]}     
+        return output
+
+api.add_resource(Info, '/Info/<i_ugy>/<rt>/<o_skill>')
+
+        
+
 
 
 if __name__ == "__main__":

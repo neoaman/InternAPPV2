@@ -23,7 +23,8 @@ def final_model(testdata):
     Y = df_balance['Approval']
     Approve_Tree_final = DecisionTreeClassifier(criterion='entropy',max_depth=10,min_samples_leaf=1,random_state=4,splitter='random')
     Approve_Tree_final.fit(X,Y)
-    return Approve_Tree_final.predict(testdummy[testdummy.columns[1:]])[-1]
+    
+    return Approve_Tree_final.predict(testdummy[testdummy.columns[1:]])[-1],Approve_Tree_final.predict_proba(testdummy[testdummy.columns[1:]])[-1]
 
     
     
